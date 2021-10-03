@@ -9,8 +9,7 @@ GENERATEDCODE:=
 all: type test lint
 
 lint:
-	$(CMD) flake8 $(PYMODULE) $(TESTS) $(GENERATEDCODE)
-	$(CMD) flake8 --config=extracode.flake8 $(EXTRACODE)
+	$(CMD) flake8 $(PYMODULE) $(TESTS) $(EXTRACODE) $(GENERATEDCODE)
 
 type:
 	$(CMD) mypy $(PYMODULE) $(TESTS) $(EXTRACODE) $(GENERATEDCODE)
