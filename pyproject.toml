@@ -17,7 +17,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.6"
 j5 = "^0.13.0"
-zoloto = {git = "https://github.com/RealOrangeOne/zoloto.git"}
+zoloto = "^0.7.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8"
