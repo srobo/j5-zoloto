@@ -53,6 +53,16 @@ class ZolotoCameraBoard(Board):
         """
         return self._camera.see(eager=eager)
 
+    def see_ids(self) -> List[int]:
+        """
+        Capture an image and identify fiducial markers.
+
+        This method does not perform pose estimation, so is faster than ``see``.
+
+        :returns: A list of IDs for the markers that were visible.
+        """
+        return self._camera.see_ids()
+
     def save(self, path: Union[Path, str]) -> None:
         """Save an annotated image to a path."""
         self._camera.save(path)

@@ -1,6 +1,6 @@
 """Backends for using Zoloto."""
 from pathlib import Path
-from typing import Generator, Optional, Set, Type, Union
+from typing import Generator, List, Optional, Set, Type, Union
 
 from j5.backends import Backend
 from j5.boards import Board
@@ -88,6 +88,15 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
         :param identifier: Camera identifier, ignored.
         """
         self._zcam.save_frame(file, annotate=True)
+
+    def get_visible_markers(self, identifier: int) -> List[int]:
+        """
+        Get a list of visible marker IDs.
+
+        :param identifier: Camera identifier, ignored.
+        :returns: List of marker IDs that were visible.
+        """
+        return self._zcam.get_visible_markers()
 
     @property
     def firmware_version(self) -> Optional[str]:

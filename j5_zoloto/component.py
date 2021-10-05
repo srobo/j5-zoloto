@@ -38,6 +38,16 @@ class MarkerCameraInterface(Interface):
         raise NotImplementedError  # pragma: nocover
 
     @abstractmethod
+    def get_visible_markers(self, identifier: int) -> List[int]:
+        """
+        Get a list of visible marker IDs.
+
+        :param identifier: Camera identifier, ignored.
+        :returns: List of marker IDs that were visible.
+        """
+        raise NotImplementedError  # pragma: nocover
+
+    @abstractmethod
     def close_camera(self, identifier: int) -> None:
         """Close the camera object."""
         raise NotImplementedError  # pragma: nocover
@@ -81,6 +91,16 @@ class MarkerCamera(Component):
             return list(self._backend.process_frame_eager(self._identifier))
         else:
             return list(self._backend.process_frame(self._identifier))
+
+    def see_ids(self) -> List[int]:
+        """
+        Capture an image and identify fiducial markers.
+
+        This method does not perform pose estimation, so is faster than ``see``.
+
+        :returns: A list of IDs for the markers that were visible.
+        """
+        return self._backend.get_visible_markers(self._identifier)
 
     def save(self, path: Union[Path, str]) -> None:
         """Save an annotated image to a path."""
