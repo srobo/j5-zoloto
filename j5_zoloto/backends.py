@@ -92,7 +92,7 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
     @property
     def firmware_version(self) -> Optional[str]:
         """The firmware version of the board."""
-        return f"Zoloto CV v{zoloto_version}"
+        return f"Zoloto v{zoloto_version}"
 
     def close_camera(self, identifier: int) -> None:
         """Close the camera object."""
