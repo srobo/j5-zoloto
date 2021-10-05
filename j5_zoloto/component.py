@@ -11,6 +11,7 @@ from zoloto.marker import BaseMarker, EagerMarker, Marker, UncalibratedMarker
 class MarkerCameraInterface(Interface):
     """An interface containing the methods required for a marker camera."""
 
+    @abstractmethod
     def process_frame(
         self,
         identifier: int,
@@ -22,6 +23,7 @@ class MarkerCameraInterface(Interface):
         """
         raise NotImplementedError  # pragma: nocover
 
+    @abstractmethod
     def process_frame_eager(self, identifier: int) -> Generator[EagerMarker, None, None]:
         """
         Get markers that the camera can see.
