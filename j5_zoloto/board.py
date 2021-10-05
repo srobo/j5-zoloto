@@ -34,7 +34,7 @@ class ZolotoCameraBoard(Board):
 
     def make_safe(self) -> None:
         """Make this board safe."""
-        pass
+        self._camera.close()
 
     @staticmethod
     def supported_components() -> Set[Type[Component]]:

@@ -37,6 +37,11 @@ class MarkerCameraInterface(Interface):
         """Save an annotated image to a file."""
         raise NotImplementedError  # pragma: nocover
 
+    @abstractmethod
+    def close_camera(self, identifier: int) -> None:
+        """Close the camera object."""
+        raise NotImplementedError  # pragma: nocover
+
 
 class MarkerCamera(Component):
     """
@@ -82,3 +87,11 @@ class MarkerCamera(Component):
         if isinstance(path, str):
             path = Path(path)
         self._backend.save_annotated_image(self._identifier, path)
+
+    def close(self) -> None:
+        """
+        Close the camera.
+
+        The camera will no longer work after this method is called.
+        """
+        self._backend.close_camera(self._identifier)
