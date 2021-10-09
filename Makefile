@@ -3,7 +3,7 @@
 CMD:=poetry run
 PYMODULE:=j5_zoloto
 TESTS:=tests
-EXTRACODE:=
+EXTRACODE:=examples/
 GENERATEDCODE:=
 
 all: type test lint
