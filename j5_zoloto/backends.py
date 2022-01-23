@@ -1,10 +1,11 @@
 """Backends for using Zoloto."""
 from pathlib import Path
-from typing import Generator, List, Optional, Set, Type, Union
+from typing import Generator, List, Optional, Set, Tuple, Type, Union
 
 from j5.backends import Backend
 from j5.boards import Board
 from zoloto import __version__ as zoloto_version
+from zoloto.calibration import parse_calibration_file
 from zoloto.cameras import Camera
 from zoloto.marker import EagerMarker, Marker, UncalibratedMarker
 from zoloto.marker_type import MarkerType
@@ -33,11 +34,18 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
         }
 
     def __init__(self, camera_id: int) -> None:
+        calibration_file = self.get_calibration_file()
+        resolution: Optional[Tuple[int, int]] = (
+            parse_calibration_file(calibration_file).resolution
+            if calibration_file is not None
+            else None
+        )
         self._zcam = self.camera_class(
             camera_id,
             marker_type=self.marker_type,
-            calibration_file=self.get_calibration_file(),
+            calibration_file=calibration_file,
             marker_size=self.marker_size,
+            resolution=resolution,
         )
 
     @classmethod
