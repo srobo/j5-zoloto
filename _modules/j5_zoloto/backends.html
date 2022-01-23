@@ -67,11 +67,12 @@
   <h1>Source code for j5_zoloto.backends</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Backends for using Zoloto.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">j5.backends</span> <span class="kn">import</span> <span class="n">Backend</span>
 <span class="kn">from</span> <span class="nn">j5.boards</span> <span class="kn">import</span> <span class="n">Board</span>
 <span class="kn">from</span> <span class="nn">zoloto</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">zoloto_version</span>
+<span class="kn">from</span> <span class="nn">zoloto.calibration</span> <span class="kn">import</span> <span class="n">parse_calibration_file</span>
 <span class="kn">from</span> <span class="nn">zoloto.cameras</span> <span class="kn">import</span> <span class="n">Camera</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker</span> <span class="kn">import</span> <span class="n">EagerMarker</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">UncalibratedMarker</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker_type</span> <span class="kn">import</span> <span class="n">MarkerType</span>
@@ -100,11 +101,18 @@
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="ZolotoSingleHardwareBackend.__init__"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">calibration_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_calibration_file</span><span class="p">()</span>
+        <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">parse_calibration_file</span><span class="p">(</span><span class="n">calibration_file</span><span class="p">)</span><span class="o">.</span><span class="n">resolution</span>
+            <span class="k">if</span> <span class="n">calibration_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera_class</span><span class="p">(</span>
             <span class="n">camera_id</span><span class="p">,</span>
             <span class="n">marker_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">marker_type</span><span class="p">,</span>
-            <span class="n">calibration_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_calibration_file</span><span class="p">(),</span>
+            <span class="n">calibration_file</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
             <span class="n">marker_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">marker_size</span><span class="p">,</span>
+            <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span>
         <span class="p">)</span></div>
 
     <span class="nd">@classmethod</span>
