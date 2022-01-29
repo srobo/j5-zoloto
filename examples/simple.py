@@ -2,7 +2,7 @@
 
 from j5 import BaseRobot, BoardGroup
 
-from j5_zoloto import ZolotoCameraBoard, ZolotoSingleHardwareBackend
+from j5_zoloto import ZolotoCameraBoard, ZolotoHardwareBackend
 
 
 class Robot(BaseRobot):
@@ -11,7 +11,7 @@ class Robot(BaseRobot):
     def __init__(self) -> None:
         self._cameras = BoardGroup.get_board_group(
             ZolotoCameraBoard,
-            ZolotoSingleHardwareBackend,
+            ZolotoHardwareBackend,
         )
 
     @property

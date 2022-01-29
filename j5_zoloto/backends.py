@@ -6,7 +6,7 @@ from j5.backends import Backend
 from j5.boards import Board
 from zoloto import __version__ as zoloto_version
 from zoloto.calibration import parse_calibration_file
-from zoloto.cameras import Camera
+from zoloto.cameras.camera import Camera, find_camera_ids
 from zoloto.marker import EagerMarker, Marker, UncalibratedMarker
 from zoloto.marker_type import MarkerType
 
@@ -15,14 +15,8 @@ from j5_zoloto.board import ZolotoCameraBoard
 from .component import MarkerCameraInterface
 
 
-class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
-    """
-    A Zoloto Hardware backend for a single camera.
-
-    This backend will choose the first camera attached to the system.
-
-    Any additional cameras will be ignored.
-    """
+class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
+    """A Zoloto Hardware backend."""
 
     board = ZolotoCameraBoard
 
@@ -30,7 +24,11 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
     def discover(cls) -> Set[Board]:
         """Discover boards that this backend can control."""
         return {
-            ZolotoCameraBoard("0", cls(0)),  # Choose the first camera only.
+            ZolotoCameraBoard(
+                str(camera_id),
+                cls(camera_id),
+            )
+            for camera_id in find_camera_ids()
         }
 
     def __init__(self, camera_id: int) -> None:
