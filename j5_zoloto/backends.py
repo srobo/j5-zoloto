@@ -5,7 +5,7 @@ from typing import Generator, List, Optional, Set, Type, Union
 from j5.backends import Backend
 from j5.boards import Board
 from zoloto import __version__ as zoloto_version
-from zoloto.cameras import Camera
+from zoloto.cameras.camera import find_camera_ids, Camera
 from zoloto.marker import EagerMarker, Marker, UncalibratedMarker
 from zoloto.marker_type import MarkerType
 
@@ -28,8 +28,12 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
     @classmethod
     def discover(cls) -> Set[Board]:
         """Discover boards that this backend can control."""
+        camera_id = next(find_camera_ids(), 0)  # Choose the first camera only.
         return {
-            ZolotoCameraBoard("0", cls(0)),  # Choose the first camera only.
+            ZolotoCameraBoard(
+                str(camera_id),
+                cls(camera_id)
+            ),
         }
 
     def __init__(self, camera_id: int) -> None:
