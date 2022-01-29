@@ -79,7 +79,7 @@
 
 <span class="kn">from</span> <span class="nn">j5</span> <span class="kn">import</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">BoardGroup</span>
 
-<span class="kn">from</span> <span class="nn">j5_zoloto</span> <span class="kn">import</span> <span class="n">ZolotoCameraBoard</span><span class="p">,</span> <span class="n">ZolotoSingleHardwareBackend</span>
+<span class="kn">from</span> <span class="nn">j5_zoloto</span> <span class="kn">import</span> <span class="n">ZolotoCameraBoard</span><span class="p">,</span> <span class="n">ZolotoHardwareBackend</span>
 
 
 <span class="k">class</span> <span class="nc">Robot</span><span class="p">(</span><span class="n">BaseRobot</span><span class="p">):</span>
@@ -88,7 +88,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cameras</span> <span class="o">=</span> <span class="n">BoardGroup</span><span class="o">.</span><span class="n">get_board_group</span><span class="p">(</span>
             <span class="n">ZolotoCameraBoard</span><span class="p">,</span>
-            <span class="n">ZolotoSingleHardwareBackend</span><span class="p">,</span>
+            <span class="n">ZolotoHardwareBackend</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -113,7 +113,7 @@
 <span class="kn">from</span> <span class="nn">zoloto.cameras</span> <span class="kn">import</span> <span class="n">Camera</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker_type</span> <span class="kn">import</span> <span class="n">MarkerType</span>
 
-<span class="kn">from</span> <span class="nn">j5_zoloto</span> <span class="kn">import</span> <span class="n">ZolotoCameraBoard</span><span class="p">,</span> <span class="n">ZolotoSingleHardwareBackend</span>
+<span class="kn">from</span> <span class="nn">j5_zoloto</span> <span class="kn">import</span> <span class="n">ZolotoCameraBoard</span><span class="p">,</span> <span class="n">ZolotoHardwareBackend</span>
 
 
 <span class="k">class</span> <span class="nc">MyCamera</span><span class="p">(</span><span class="n">Camera</span><span class="p">):</span>
@@ -127,7 +127,7 @@
             <span class="k">return</span> <span class="mi">100</span>
 
 
-<span class="k">class</span> <span class="nc">MyZolotoSingleHardwareBackend</span><span class="p">(</span><span class="n">ZolotoSingleHardwareBackend</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MyZolotoHardwareBackend</span><span class="p">(</span><span class="n">ZolotoHardwareBackend</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Backend with customisations.&quot;&quot;&quot;</span>
 
     <span class="n">camera_class</span> <span class="o">=</span> <span class="n">MyCamera</span>
@@ -140,7 +140,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cameras</span> <span class="o">=</span> <span class="n">BoardGroup</span><span class="o">.</span><span class="n">get_board_group</span><span class="p">(</span>
             <span class="n">ZolotoCameraBoard</span><span class="p">,</span>
-            <span class="n">MyZolotoSingleHardwareBackend</span><span class="p">,</span>
+            <span class="n">MyZolotoHardwareBackend</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>

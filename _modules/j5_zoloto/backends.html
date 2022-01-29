@@ -73,7 +73,7 @@
 <span class="kn">from</span> <span class="nn">j5.boards</span> <span class="kn">import</span> <span class="n">Board</span>
 <span class="kn">from</span> <span class="nn">zoloto</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">zoloto_version</span>
 <span class="kn">from</span> <span class="nn">zoloto.calibration</span> <span class="kn">import</span> <span class="n">parse_calibration_file</span>
-<span class="kn">from</span> <span class="nn">zoloto.cameras</span> <span class="kn">import</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">zoloto.cameras.camera</span> <span class="kn">import</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">find_camera_ids</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker</span> <span class="kn">import</span> <span class="n">EagerMarker</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">UncalibratedMarker</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker_type</span> <span class="kn">import</span> <span class="n">MarkerType</span>
 
@@ -82,25 +82,23 @@
 <span class="kn">from</span> <span class="nn">.component</span> <span class="kn">import</span> <span class="n">MarkerCameraInterface</span>
 
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend">[docs]</a><span class="k">class</span> <span class="nc">ZolotoSingleHardwareBackend</span><span class="p">(</span><span class="n">MarkerCameraInterface</span><span class="p">,</span> <span class="n">Backend</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Zoloto Hardware backend for a single camera.</span>
-
-<span class="sd">    This backend will choose the first camera attached to the system.</span>
-
-<span class="sd">    Any additional cameras will be ignored.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend">[docs]</a><span class="k">class</span> <span class="nc">ZolotoHardwareBackend</span><span class="p">(</span><span class="n">MarkerCameraInterface</span><span class="p">,</span> <span class="n">Backend</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Zoloto Hardware backend.&quot;&quot;&quot;</span>
 
     <span class="n">board</span> <span class="o">=</span> <span class="n">ZolotoCameraBoard</span>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.discover"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.discover">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.discover"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.discover">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">discover</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Board</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Discover boards that this backend can control.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="n">ZolotoCameraBoard</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>  <span class="c1"># Choose the first camera only.</span>
+            <span class="n">ZolotoCameraBoard</span><span class="p">(</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">camera_id</span><span class="p">),</span>
+                <span class="bp">cls</span><span class="p">(</span><span class="n">camera_id</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">camera_id</span> <span class="ow">in</span> <span class="n">find_camera_ids</span><span class="p">()</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.__init__"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.__init__"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">calibration_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_calibration_file</span><span class="p">()</span>
         <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">parse_calibration_file</span><span class="p">(</span><span class="n">calibration_file</span><span class="p">)</span><span class="o">.</span><span class="n">resolution</span>
@@ -133,11 +131,11 @@
         <span class="sd">&quot;&quot;&quot;The static size of a marker.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">250</span>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.get_calibration_file"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.get_calibration_file">[docs]</a>    <span class="k">def</span> <span class="nf">get_calibration_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.get_calibration_file"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.get_calibration_file">[docs]</a>    <span class="k">def</span> <span class="nf">get_calibration_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get the calibration file.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.process_frame"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.process_frame">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame</span><span class="p">(</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.process_frame"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.process_frame">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">UncalibratedMarker</span><span class="p">,</span> <span class="n">Marker</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
@@ -148,7 +146,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">process_frame</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.process_frame_eager"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.process_frame_eager">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame_eager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">EagerMarker</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.process_frame_eager"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.process_frame_eager">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame_eager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">EagerMarker</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get markers that the camera can see.</span>
 
@@ -156,7 +154,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">process_frame_eager</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.save_annotated_image"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.save_annotated_image">[docs]</a>    <span class="k">def</span> <span class="nf">save_annotated_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.save_annotated_image"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.save_annotated_image">[docs]</a>    <span class="k">def</span> <span class="nf">save_annotated_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save an annotated image to a file.</span>
 
@@ -164,7 +162,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">save_frame</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.get_visible_markers"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.get_visible_markers">[docs]</a>    <span class="k">def</span> <span class="nf">get_visible_markers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.get_visible_markers"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.get_visible_markers">[docs]</a>    <span class="k">def</span> <span class="nf">get_visible_markers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of visible marker IDs.</span>
 
@@ -178,7 +176,7 @@
         <span class="sd">&quot;&quot;&quot;The firmware version of the board.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Zoloto v</span><span class="si">{</span><span class="n">zoloto_version</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<div class="viewcode-block" id="ZolotoSingleHardwareBackend.close_camera"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoSingleHardwareBackend.close_camera">[docs]</a>    <span class="k">def</span> <span class="nf">close_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.close_camera"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.close_camera">[docs]</a>    <span class="k">def</span> <span class="nf">close_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Close the camera object.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
 </pre></div>

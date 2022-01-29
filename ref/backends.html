@@ -82,25 +82,23 @@
 <h2>Single Camera Backend<a class="headerlink" href="#single-camera-backend" title="Permalink to this headline"></a></h2>
 <p>This backend only supports a single camera.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">j5_zoloto.backends.</span></span><span class="sig-name descname"><span class="pre">ZolotoSingleHardwareBackend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend" title="Permalink to this definition"></a></dt>
-<dd><p>A Zoloto Hardware backend for a single camera.</p>
-<p>This backend will choose the first camera attached to the system.</p>
-<p>Any additional cameras will be ignored.</p>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">j5_zoloto.backends.</span></span><span class="sig-name descname"><span class="pre">ZolotoHardwareBackend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend" title="Permalink to this definition"></a></dt>
+<dd><p>A Zoloto Hardware backend.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.__init__" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.board">
-<span class="sig-name descname"><span class="pre">board</span></span><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.board" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.board">
+<span class="sig-name descname"><span class="pre">board</span></span><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.board" title="Permalink to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="boards.html#j5_zoloto.board.ZolotoCameraBoard" title="j5_zoloto.board.ZolotoCameraBoard"><code class="xref py py-class docutils literal notranslate"><span class="pre">j5_zoloto.board.ZolotoCameraBoard</span></code></a></p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.camera_class">
-<em class="property"><span class="pre">class</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">camera_class</span></span><em class="property"><span class="pre">:</span> <span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://zoloto.readthedocs.io/en/stable/cameras/camera.html#zoloto.cameras.camera.Camera" title="(in Zoloto)"><span class="pre">zoloto.cameras.camera.Camera</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.camera_class" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.camera_class">
+<em class="property"><span class="pre">class</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">camera_class</span></span><em class="property"><span class="pre">:</span> <span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://zoloto.readthedocs.io/en/stable/cameras/camera.html#zoloto.cameras.camera.Camera" title="(in Zoloto)"><span class="pre">zoloto.cameras.camera.Camera</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.camera_class" title="Permalink to this definition"></a></dt>
 <dd><p>The camera class to use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -110,8 +108,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.close_camera">
-<span class="sig-name descname"><span class="pre">close_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.close_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.close_camera" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.close_camera">
+<span class="sig-name descname"><span class="pre">close_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.close_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.close_camera" title="Permalink to this definition"></a></dt>
 <dd><p>Close the camera object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -121,8 +119,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.discover">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">discover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.discover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.discover" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.discover">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">discover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.discover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.discover" title="Permalink to this definition"></a></dt>
 <dd><p>Discover boards that this backend can control.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -132,8 +130,8 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.firmware_version">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">firmware_version</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.firmware_version" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.firmware_version">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">firmware_version</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.firmware_version" title="Permalink to this definition"></a></dt>
 <dd><p>The firmware version of the board.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -143,8 +141,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.get_calibration_file">
-<span class="sig-name descname"><span class="pre">get_calibration_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.get_calibration_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.get_calibration_file" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.get_calibration_file">
+<span class="sig-name descname"><span class="pre">get_calibration_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.get_calibration_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.get_calibration_file" title="Permalink to this definition"></a></dt>
 <dd><p>Get the calibration file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -154,8 +152,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.get_visible_markers">
-<span class="sig-name descname"><span class="pre">get_visible_markers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.get_visible_markers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.get_visible_markers" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.get_visible_markers">
+<span class="sig-name descname"><span class="pre">get_visible_markers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.get_visible_markers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.get_visible_markers" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of visible marker IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -171,8 +169,8 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.marker_size">
-<em class="property"><span class="pre">class</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">marker_size</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.marker_size" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.marker_size">
+<em class="property"><span class="pre">class</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">marker_size</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.marker_size" title="Permalink to this definition"></a></dt>
 <dd><p>The static size of a marker.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -182,8 +180,8 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.marker_type">
-<em class="property"><span class="pre">class</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">marker_type</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://zoloto.readthedocs.io/en/stable/marker_type.html#zoloto.marker_type.MarkerType" title="(in Zoloto)"><span class="pre">zoloto.marker_type.MarkerType</span></a></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.marker_type" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.marker_type">
+<em class="property"><span class="pre">class</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">marker_type</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://zoloto.readthedocs.io/en/stable/marker_type.html#zoloto.marker_type.MarkerType" title="(in Zoloto)"><span class="pre">zoloto.marker_type.MarkerType</span></a></em><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.marker_type" title="Permalink to this definition"></a></dt>
 <dd><p>The type of markers to use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -193,8 +191,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.process_frame">
-<span class="sig-name descname"><span class="pre">process_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.process_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.process_frame" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.process_frame">
+<span class="sig-name descname"><span class="pre">process_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.process_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.process_frame" title="Permalink to this definition"></a></dt>
 <dd><p>Get markers that the camera can see.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -207,8 +205,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.process_frame_eager">
-<span class="sig-name descname"><span class="pre">process_frame_eager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.process_frame_eager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.process_frame_eager" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.process_frame_eager">
+<span class="sig-name descname"><span class="pre">process_frame_eager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.process_frame_eager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.process_frame_eager" title="Permalink to this definition"></a></dt>
 <dd><p>Get markers that the camera can see.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -221,8 +219,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoSingleHardwareBackend.save_annotated_image">
-<span class="sig-name descname"><span class="pre">save_annotated_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoSingleHardwareBackend.save_annotated_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoSingleHardwareBackend.save_annotated_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="j5_zoloto.backends.ZolotoHardwareBackend.save_annotated_image">
+<span class="sig-name descname"><span class="pre">save_annotated_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/backends.html#ZolotoHardwareBackend.save_annotated_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.backends.ZolotoHardwareBackend.save_annotated_image" title="Permalink to this definition"></a></dt>
 <dd><p>Save an annotated image to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
