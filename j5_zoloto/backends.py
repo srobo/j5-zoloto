@@ -6,7 +6,7 @@ from j5.backends import Backend
 from j5.boards import Board
 from zoloto import __version__ as zoloto_version
 from zoloto.calibration import parse_calibration_file
-from zoloto.cameras.camera import find_camera_ids, Camera
+from zoloto.cameras.camera import Camera, find_camera_ids
 from zoloto.marker import EagerMarker, Marker, UncalibratedMarker
 from zoloto.marker_type import MarkerType
 
@@ -16,9 +16,7 @@ from .component import MarkerCameraInterface
 
 
 class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
-    """
-    A Zoloto Hardware backend.
-    """
+    """A Zoloto Hardware backend."""
 
     board = ZolotoCameraBoard
 
@@ -28,7 +26,7 @@ class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
         return {
             ZolotoCameraBoard(
                 str(camera_id),
-                cls(camera_id)
+                cls(camera_id),
             )
             for camera_id in find_camera_ids()
         }
