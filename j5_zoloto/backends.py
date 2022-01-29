@@ -28,12 +28,12 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
     @classmethod
     def discover(cls) -> Set[Board]:
         """Discover boards that this backend can control."""
-        camera_id = next(find_camera_ids(), 0)  # Choose the first camera only.
         return {
             ZolotoCameraBoard(
                 str(camera_id),
                 cls(camera_id)
-            ),
+            )
+            for camera_id in find_camera_ids()
         }
 
     def __init__(self, camera_id: int) -> None:
