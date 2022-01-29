@@ -4,7 +4,7 @@ from j5 import BaseRobot, BoardGroup
 from zoloto.cameras import Camera
 from zoloto.marker_type import MarkerType
 
-from j5_zoloto import ZolotoCameraBoard, ZolotoSingleHardwareBackend
+from j5_zoloto import ZolotoCameraBoard, ZolotoHardwareBackend
 
 
 class MyCamera(Camera):
@@ -18,7 +18,7 @@ class MyCamera(Camera):
             return 100
 
 
-class MyZolotoSingleHardwareBackend(ZolotoSingleHardwareBackend):
+class MyZolotoHardwareBackend(ZolotoHardwareBackend):
     """Backend with customisations."""
 
     camera_class = MyCamera
@@ -31,7 +31,7 @@ class Robot(BaseRobot):
     def __init__(self) -> None:
         self._cameras = BoardGroup.get_board_group(
             ZolotoCameraBoard,
-            MyZolotoSingleHardwareBackend,
+            MyZolotoHardwareBackend,
         )
 
     @property

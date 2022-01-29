@@ -15,13 +15,9 @@ from j5_zoloto.board import ZolotoCameraBoard
 from .component import MarkerCameraInterface
 
 
-class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
+class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
     """
-    A Zoloto Hardware backend for a single camera.
-
-    This backend will choose the first camera attached to the system.
-
-    Any additional cameras will be ignored.
+    A Zoloto Hardware backend.
     """
 
     board = ZolotoCameraBoard
