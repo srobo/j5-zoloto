@@ -66,7 +66,7 @@ class ZolotoCameraBoard(Board):
 
     def capture(self) -> ndarray:
         """
-        Get the raw image data from the camera
+        Get the raw image data from the camera.
 
         :returns: Camera pixel data
         """

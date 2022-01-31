@@ -101,7 +101,7 @@ class ZolotoSingleHardwareBackend(MarkerCameraInterface, Backend):
 
     def capture_frame(self) -> ndarray:
         """
-        Get the raw image data from the camera
+        Get the raw image data from the camera.
 
         :returns: Camera pixel data
         """
