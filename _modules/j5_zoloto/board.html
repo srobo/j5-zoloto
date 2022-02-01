@@ -73,6 +73,7 @@
 <span class="kn">from</span> <span class="nn">j5.backends</span> <span class="kn">import</span> <span class="n">Backend</span>
 <span class="kn">from</span> <span class="nn">j5.boards</span> <span class="kn">import</span> <span class="n">Board</span>
 <span class="kn">from</span> <span class="nn">j5.components</span> <span class="kn">import</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker</span> <span class="kn">import</span> <span class="n">BaseMarker</span>
 
 <span class="kn">from</span> <span class="nn">.component</span> <span class="kn">import</span> <span class="n">MarkerCamera</span><span class="p">,</span> <span class="n">MarkerCameraInterface</span>
@@ -129,6 +130,14 @@
 <span class="sd">        :returns: A list of IDs for the markers that were visible.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">see_ids</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ZolotoCameraBoard.capture"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.capture">[docs]</a>    <span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the raw image data from the camera.</span>
+
+<span class="sd">        :returns: Camera pixel data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="ZolotoCameraBoard.save"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Save an annotated image to a path.&quot;&quot;&quot;</span>

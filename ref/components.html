@@ -93,6 +93,20 @@ that it has detected.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="j5_zoloto.component.MarkerCamera.capture">
+<span class="sig-name descname"><span class="pre">capture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/component.html#MarkerCamera.capture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.component.MarkerCamera.capture" title="Permalink to this definition"></a></dt>
+<dd><p>Get the raw image data from the camera.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Camera pixel data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="j5_zoloto.component.MarkerCamera.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/component.html#MarkerCamera.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.component.MarkerCamera.close" title="Permalink to this definition"></a></dt>
 <dd><p>Close the camera.</p>
@@ -178,6 +192,20 @@ that it has detected.</p>
 <dt class="sig sig-object py" id="j5_zoloto.component.MarkerCameraInterface">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">j5_zoloto.component.</span></span><span class="sig-name descname"><span class="pre">MarkerCameraInterface</span></span><a class="reference internal" href="../_modules/j5_zoloto/component.html#MarkerCameraInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.component.MarkerCameraInterface" title="Permalink to this definition"></a></dt>
 <dd><p>An interface containing the methods required for a marker camera.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="j5_zoloto.component.MarkerCameraInterface.capture_frame">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">capture_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/component.html#MarkerCameraInterface.capture_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.component.MarkerCameraInterface.capture_frame" title="Permalink to this definition"></a></dt>
+<dd><p>Get the raw image data from the camera.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Camera pixel data</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="j5_zoloto.component.MarkerCameraInterface.close_camera">
 <em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">close_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/j5_zoloto/component.html#MarkerCameraInterface.close_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#j5_zoloto.component.MarkerCameraInterface.close_camera" title="Permalink to this definition"></a></dt>

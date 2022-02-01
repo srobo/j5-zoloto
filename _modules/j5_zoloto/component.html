@@ -72,6 +72,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">j5.components.component</span> <span class="kn">import</span> <span class="n">Component</span><span class="p">,</span> <span class="n">Interface</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
 <span class="kn">from</span> <span class="nn">zoloto.marker</span> <span class="kn">import</span> <span class="n">BaseMarker</span><span class="p">,</span> <span class="n">EagerMarker</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">UncalibratedMarker</span>
 
 
@@ -111,6 +112,15 @@
 
 <span class="sd">        :param identifier: Camera identifier, ignored.</span>
 <span class="sd">        :returns: List of marker IDs that were visible.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># pragma: nocover</span></div>
+
+<div class="viewcode-block" id="MarkerCameraInterface.capture_frame"><a class="viewcode-back" href="../../ref/components.html#j5_zoloto.component.MarkerCameraInterface.capture_frame">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">capture_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the raw image data from the camera.</span>
+
+<span class="sd">        :returns: Camera pixel data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># pragma: nocover</span></div>
 
@@ -168,6 +178,14 @@
 <span class="sd">        :returns: A list of IDs for the markers that were visible.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">get_visible_markers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MarkerCamera.capture"><a class="viewcode-back" href="../../ref/components.html#j5_zoloto.component.MarkerCamera.capture">[docs]</a>    <span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the raw image data from the camera.</span>
+
+<span class="sd">        :returns: Camera pixel data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">capture_frame</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MarkerCamera.save"><a class="viewcode-back" href="../../ref/components.html#j5_zoloto.component.MarkerCamera.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Save an annotated image to a path.&quot;&quot;&quot;</span>
