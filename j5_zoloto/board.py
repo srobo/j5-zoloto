@@ -6,6 +6,7 @@ from typing import List, Optional, Set, Type, Union, cast
 from j5.backends import Backend
 from j5.boards import Board
 from j5.components import Component
+from numpy import ndarray
 from zoloto.marker import BaseMarker
 
 from .component import MarkerCamera, MarkerCameraInterface
@@ -62,6 +63,14 @@ class ZolotoCameraBoard(Board):
         :returns: A list of IDs for the markers that were visible.
         """
         return self._camera.see_ids()
+
+    def capture(self) -> ndarray:
+        """
+        Get the raw image data from the camera.
+
+        :returns: Camera pixel data
+        """
+        return self._camera.capture()
 
     def save(self, path: Union[Path, str]) -> None:
         """Save an annotated image to a path."""

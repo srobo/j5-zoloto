@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Generator, List, Type, Union
 
 from j5.components.component import Component, Interface
+from numpy import ndarray
 from zoloto.marker import BaseMarker, EagerMarker, Marker, UncalibratedMarker
 
 
@@ -44,6 +45,15 @@ class MarkerCameraInterface(Interface):
 
         :param identifier: Camera identifier, ignored.
         :returns: List of marker IDs that were visible.
+        """
+        raise NotImplementedError  # pragma: nocover
+
+    @abstractmethod
+    def capture_frame(self) -> ndarray:
+        """
+        Get the raw image data from the camera.
+
+        :returns: Camera pixel data
         """
         raise NotImplementedError  # pragma: nocover
 
@@ -101,6 +111,14 @@ class MarkerCamera(Component):
         :returns: A list of IDs for the markers that were visible.
         """
         return self._backend.get_visible_markers(self._identifier)
+
+    def capture(self) -> ndarray:
+        """
+        Get the raw image data from the camera.
+
+        :returns: Camera pixel data
+        """
+        return self._backend.capture_frame()
 
     def save(self, path: Union[Path, str]) -> None:
         """Save an annotated image to a path."""

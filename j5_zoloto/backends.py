@@ -4,6 +4,7 @@ from typing import Generator, List, Optional, Set, Tuple, Type, Union
 
 from j5.backends import Backend
 from j5.boards import Board
+from numpy import ndarray
 from zoloto import __version__ as zoloto_version
 from zoloto.calibration import parse_calibration_file
 from zoloto.cameras.camera import Camera, find_camera_ids
@@ -103,6 +104,14 @@ class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
         :returns: List of marker IDs that were visible.
         """
         return self._zcam.get_visible_markers()
+
+    def capture_frame(self) -> ndarray:
+        """
+        Get the raw image data from the camera.
+
+        :returns: Camera pixel data
+        """
+        return self._zcam.capture_frame()
 
     @property
     def firmware_version(self) -> Optional[str]:
