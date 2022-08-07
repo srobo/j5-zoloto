@@ -1,5 +1,6 @@
 """Classes for Fiducial Marker Camera."""
 
+import logging
 from abc import abstractmethod
 from pathlib import Path
 from typing import Generator, List, Type, Union
@@ -7,6 +8,8 @@ from typing import Generator, List, Type, Union
 from j5.components.component import Component, Interface
 from numpy import ndarray
 from zoloto.marker import BaseMarker, EagerMarker, Marker, UncalibratedMarker
+
+LOGGER = logging.getLogger(__name__)
 
 
 class MarkerCameraInterface(Interface):
@@ -124,6 +127,9 @@ class MarkerCamera(Component):
         """Save an annotated image to a path."""
         if isinstance(path, str):
             path = Path(path)
+        if not path.suffix:
+            LOGGER.info("Unable to save image without file extension, assuming .jpg")
+            path = path.with_suffix(".jpg")
         self._backend.save_annotated_image(self._identifier, path)
 
     def close(self) -> None:
