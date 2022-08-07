@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "j5_zoloto"
-version = "0.2.1"
+version = "0.3.0"
 description = "j5 integration for Zoloto computer vision"
 authors = ["j5 contributors <j5api@googlegroups.com>"]
 license = "MIT"
