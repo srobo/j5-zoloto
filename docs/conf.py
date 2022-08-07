@@ -3,7 +3,7 @@ from typing import List
 import j5_zoloto
 
 project = "j5-Zoloto"
-copyright = "2020-21, Dan Trickey"  # noqa: A001
+copyright = "2020-22, Dan Trickey"  # noqa: A001
 author = "Dan Trickey"
 
 release = j5_zoloto.__version__
