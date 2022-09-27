@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>j5_zoloto.backends &mdash; j5-Zoloto 0.3.0 documentation</title>
+  <title>j5_zoloto.backends &mdash; j5-Zoloto 0.4.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -114,19 +114,19 @@
             <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>  <span class="c1"># type: ignore[misc]</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">camera_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Camera</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;The camera class to use.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Camera</span>
 
-    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>  <span class="c1"># type: ignore[misc]</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">marker_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MarkerType</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The type of markers to use.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">MarkerType</span><span class="o">.</span><span class="n">APRILTAG_36H11</span>
 
-    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>  <span class="c1"># type: ignore[misc]</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">marker_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The static size of a marker.&quot;&quot;&quot;</span>
