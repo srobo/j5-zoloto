@@ -47,19 +47,19 @@ class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
             resolution=resolution,
         )
 
-    @classmethod
+    @classmethod  # type: ignore[misc]
     @property
     def camera_class(cls) -> Type[Camera]:
         """The camera class to use."""
         return Camera
 
-    @classmethod
+    @classmethod  # type: ignore[misc]
     @property
     def marker_type(self) -> MarkerType:
         """The type of markers to use."""
         return MarkerType.APRILTAG_36H11
 
-    @classmethod
+    @classmethod  # type: ignore[misc]
     @property
     def marker_size(self) -> int:
         """The static size of a marker."""
