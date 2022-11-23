@@ -72,38 +72,60 @@ class ZolotoHardwareBackend(MarkerCameraInterface, Backend):
     def process_frame(
         self,
         identifier: int,
+        *,
+        frame: Optional[ndarray] = None,
     ) -> Generator[Union[UncalibratedMarker, Marker], None, None]:
         """
         Get markers that the camera can see.
 
         :param identifier: Camera identifier, ignored.
+        :param frame: Optional frame to process instead of capturing one.
         """
-        return self._zcam.process_frame()
+        return self._zcam.process_frame(frame=frame)
 
-    def process_frame_eager(self, identifier: int) -> Generator[EagerMarker, None, None]:
+    def process_frame_eager(
+        self,
+        identifier: int,
+        *,
+        frame: Optional[ndarray] = None,
+    ) -> Generator[EagerMarker, None, None]:
         """
         Get markers that the camera can see.
 
         :param identifier: Camera identifier, ignored.
+        :param frame: Optional frame to process instead of capturing one.
         """
-        return self._zcam.process_frame_eager()
+        return self._zcam.process_frame_eager(frame=frame)
 
-    def save_annotated_image(self, identifier: int, file: Path) -> None:
+    def save_annotated_image(
+        self,
+        identifier: int,
+        file: Path,
+        *,
+        frame: Optional[ndarray] = None,
+    ) -> None:
         """
         Save an annotated image to a file.
 
         :param identifier: Camera identifier, ignored.
+        :param frame: Optional frame to process instead of capturing one.
         """
-        self._zcam.save_frame(file, annotate=True)
+        self._zcam.save_frame(file, annotate=True, frame=frame)
 
-    def get_visible_markers(self, identifier: int) -> List[int]:
+    def get_visible_markers(
+        self,
+        identifier: int,
+        *,
+        frame: Optional[ndarray] = None,
+    ) -> List[int]:
         """
         Get a list of visible marker IDs.
 
         :param identifier: Camera identifier, ignored.
+        :param frame: Optional frame to process instead of capturing one.
         :returns: List of marker IDs that were visible.
         """
-        return self._zcam.get_visible_markers()
+        return self._zcam.get_visible_markers(frame=frame)
 
     def capture_frame(self) -> ndarray:
         """

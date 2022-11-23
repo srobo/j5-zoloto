@@ -3,7 +3,7 @@
 import logging
 from abc import abstractmethod
 from pathlib import Path
-from typing import Generator, List, Type, Union
+from typing import Generator, List, Optional, Type, Union
 
 from j5.components.component import Component, Interface
 from numpy import ndarray
@@ -19,6 +19,8 @@ class MarkerCameraInterface(Interface):
     def process_frame(
         self,
         identifier: int,
+        *,
+        frame: Optional[ndarray] = None,
     ) -> Generator[Union[UncalibratedMarker, Marker], None, None]:
         """
         Get markers that the camera can see.
@@ -28,7 +30,12 @@ class MarkerCameraInterface(Interface):
         raise NotImplementedError  # pragma: nocover
 
     @abstractmethod
-    def process_frame_eager(self, identifier: int) -> Generator[EagerMarker, None, None]:
+    def process_frame_eager(
+        self,
+        identifier: int,
+        *,
+        frame: Optional[ndarray] = None,
+    ) -> Generator[EagerMarker, None, None]:
         """
         Get markers that the camera can see.
 
@@ -37,12 +44,23 @@ class MarkerCameraInterface(Interface):
         raise NotImplementedError  # pragma: nocover
 
     @abstractmethod
-    def save_annotated_image(self, identifier: int, file: Path) -> None:
+    def save_annotated_image(
+        self,
+        identifier: int,
+        file: Path,
+        *,
+        frame: Optional[ndarray] = None,
+    ) -> None:
         """Save an annotated image to a file."""
         raise NotImplementedError  # pragma: nocover
 
     @abstractmethod
-    def get_visible_markers(self, identifier: int) -> List[int]:
+    def get_visible_markers(
+        self,
+        identifier: int,
+        *,
+        frame: Optional[ndarray] = None,
+    ) -> List[int]:
         """
         Get a list of visible marker IDs.
 
@@ -93,7 +111,12 @@ class MarkerCamera(Component):
         """An integer to identify the component on a board."""
         return self._identifier
 
-    def see(self, *, eager: bool = True) -> List[BaseMarker]:
+    def see(
+        self,
+        *,
+        eager: bool = True,
+        frame: Optional[ndarray] = None,
+    ) -> List[BaseMarker]:
         """
         Capture an image and identify fiducial markers.
 
@@ -101,11 +124,11 @@ class MarkerCamera(Component):
         :returns: list of markers that the camera could see.
         """
         if eager:
-            return list(self._backend.process_frame_eager(self._identifier))
+            return list(self._backend.process_frame_eager(self._identifier, frame=frame))
         else:
-            return list(self._backend.process_frame(self._identifier))
+            return list(self._backend.process_frame(self._identifier, frame=frame))
 
-    def see_ids(self) -> List[int]:
+    def see_ids(self, *, frame: Optional[ndarray] = None) -> List[int]:
         """
         Capture an image and identify fiducial markers.
 
@@ -113,7 +136,7 @@ class MarkerCamera(Component):
 
         :returns: A list of IDs for the markers that were visible.
         """
-        return self._backend.get_visible_markers(self._identifier)
+        return self._backend.get_visible_markers(self._identifier, frame=frame)
 
     def capture(self) -> ndarray:
         """
@@ -123,14 +146,14 @@ class MarkerCamera(Component):
         """
         return self._backend.capture_frame()
 
-    def save(self, path: Union[Path, str]) -> None:
+    def save(self, path: Union[Path, str], *, frame: Optional[ndarray] = None) -> None:
         """Save an annotated image to a path."""
         if isinstance(path, str):
             path = Path(path)
         if not path.suffix:
             LOGGER.info("Unable to save image without file extension, assuming .jpg")
             path = path.with_suffix(".jpg")
-        self._backend.save_annotated_image(self._identifier, path)
+        self._backend.save_annotated_image(self._identifier, path, frame=frame)
 
     def close(self) -> None:
         """
