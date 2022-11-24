@@ -139,38 +139,60 @@
 <div class="viewcode-block" id="ZolotoHardwareBackend.process_frame"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.process_frame">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">UncalibratedMarker</span><span class="p">,</span> <span class="n">Marker</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get markers that the camera can see.</span>
 
 <span class="sd">        :param identifier: Camera identifier, ignored.</span>
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">process_frame</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">process_frame</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZolotoHardwareBackend.process_frame_eager"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.process_frame_eager">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame_eager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">EagerMarker</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.process_frame_eager"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.process_frame_eager">[docs]</a>    <span class="k">def</span> <span class="nf">process_frame_eager</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">EagerMarker</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get markers that the camera can see.</span>
 
 <span class="sd">        :param identifier: Camera identifier, ignored.</span>
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">process_frame_eager</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">process_frame_eager</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZolotoHardwareBackend.save_annotated_image"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.save_annotated_image">[docs]</a>    <span class="k">def</span> <span class="nf">save_annotated_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.save_annotated_image"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.save_annotated_image">[docs]</a>    <span class="k">def</span> <span class="nf">save_annotated_image</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save an annotated image to a file.</span>
 
 <span class="sd">        :param identifier: Camera identifier, ignored.</span>
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">save_frame</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">save_frame</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZolotoHardwareBackend.get_visible_markers"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.get_visible_markers">[docs]</a>    <span class="k">def</span> <span class="nf">get_visible_markers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoHardwareBackend.get_visible_markers"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.get_visible_markers">[docs]</a>    <span class="k">def</span> <span class="nf">get_visible_markers</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of visible marker IDs.</span>
 
 <span class="sd">        :param identifier: Camera identifier, ignored.</span>
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
 <span class="sd">        :returns: List of marker IDs that were visible.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">get_visible_markers</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zcam</span><span class="o">.</span><span class="n">get_visible_markers</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ZolotoHardwareBackend.capture_frame"><a class="viewcode-back" href="../../ref/backends.html#j5_zoloto.backends.ZolotoHardwareBackend.capture_frame">[docs]</a>    <span class="k">def</span> <span class="nf">capture_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

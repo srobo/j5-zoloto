@@ -112,24 +112,31 @@
         <span class="p">}</span></div>
 
     <span class="c1"># Proxy methods from MarkerCamera object</span>
-<div class="viewcode-block" id="ZolotoCameraBoard.see"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.see">[docs]</a>    <span class="k">def</span> <span class="nf">see</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">eager</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMarker</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoCameraBoard.see"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.see">[docs]</a>    <span class="k">def</span> <span class="nf">see</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">eager</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMarker</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Capture an image and identify fiducial markers.</span>
 
 <span class="sd">        :param eager: Process the pose estimations of markers immediately.</span>
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
 <span class="sd">        :returns: list of markers that the camera could see.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="n">eager</span><span class="o">=</span><span class="n">eager</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="n">eager</span><span class="o">=</span><span class="n">eager</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZolotoCameraBoard.see_ids"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.see_ids">[docs]</a>    <span class="k">def</span> <span class="nf">see_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="ZolotoCameraBoard.see_ids"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.see_ids">[docs]</a>    <span class="k">def</span> <span class="nf">see_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Capture an image and identify fiducial markers.</span>
 
 <span class="sd">        This method does not perform pose estimation, so is faster than ``see``.</span>
 
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
 <span class="sd">        :returns: A list of IDs for the markers that were visible.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">see_ids</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">see_ids</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ZolotoCameraBoard.capture"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.capture">[docs]</a>    <span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -139,9 +146,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ZolotoCameraBoard.save"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Save an annotated image to a path.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="ZolotoCameraBoard.save"><a class="viewcode-back" href="../../ref/boards.html#j5_zoloto.board.ZolotoCameraBoard.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save an annotated image to a path.</span>
+
+<span class="sd">        :param path: Path to save file to.</span>
+<span class="sd">        :param frame: Optional frame to process instead of capturing one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
