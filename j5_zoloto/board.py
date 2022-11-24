@@ -45,24 +45,31 @@ class ZolotoCameraBoard(Board):
         }
 
     # Proxy methods from MarkerCamera object
-    def see(self, *, eager: bool = True) -> List[BaseMarker]:
+    def see(
+        self,
+        *,
+        eager: bool = True,
+        frame: Optional[ndarray] = None,
+    ) -> List[BaseMarker]:
         """
         Capture an image and identify fiducial markers.
 
         :param eager: Process the pose estimations of markers immediately.
+        :param frame: Optional frame to process instead of capturing one.
         :returns: list of markers that the camera could see.
         """
-        return self._camera.see(eager=eager)
+        return self._camera.see(eager=eager, frame=frame)
 
-    def see_ids(self) -> List[int]:
+    def see_ids(self, *, frame: Optional[ndarray] = None) -> List[int]:
         """
         Capture an image and identify fiducial markers.
 
         This method does not perform pose estimation, so is faster than ``see``.
 
+        :param frame: Optional frame to process instead of capturing one.
         :returns: A list of IDs for the markers that were visible.
         """
-        return self._camera.see_ids()
+        return self._camera.see_ids(frame=frame)
 
     def capture(self) -> ndarray:
         """
@@ -72,6 +79,11 @@ class ZolotoCameraBoard(Board):
         """
         return self._camera.capture()
 
-    def save(self, path: Union[Path, str]) -> None:
-        """Save an annotated image to a path."""
-        self._camera.save(path)
+    def save(self, path: Union[Path, str], *, frame: Optional[ndarray] = None) -> None:
+        """
+        Save an annotated image to a path.
+
+        :param path: Path to save file to.
+        :param frame: Optional frame to process instead of capturing one.
+        """
+        self._camera.save(path, frame=frame)
